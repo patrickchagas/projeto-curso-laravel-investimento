@@ -40,12 +40,14 @@ class UsersController extends Controller
     {   
         //criar um novo usuário atráves do Service
         $request = $this->service->store($request->all());
-
         //Verificar se houve sucesso ou falha
-        if ($request['success'])
-            $usuario = $request['data'];
-        else
-            $usuario = null;
+        $usuario = $request['success'] ? $request['data'] : null;
+
+        //Passar mensagens para view
+        session()->flash('success', [
+            'success'  => $request['success'],
+            'messages' => $request['messages']
+        ]);
 
         //transferir o resultado para view
         return view('user.index', [
