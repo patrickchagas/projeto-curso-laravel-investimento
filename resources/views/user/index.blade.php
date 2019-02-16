@@ -42,17 +42,20 @@
             </thead>
 
             <tbody>
+                @foreach ($users as $user)
+                    
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ $user->id }}</td>
+                    <td>{{ $user->cpf }}</td>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->phone }}</td>
+                    <td>{{ $user->birth }}</td>
+                    <td>{{ $user->email }}</td>      
+                    <td>{{ $user->status }}</td>
+                    <td>{{ $user->permission }}</td>
                 </tr>
-            </tbody>
+                @endforeach
+            </tbody>                
         </table>
 
        
