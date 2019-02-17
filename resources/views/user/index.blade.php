@@ -10,8 +10,7 @@
 @section('conteudo-view')
 
     @if(session('success'))
-        <h3>{{ session('success')['messages'] }}</h3>  
-          
+        <h3>{{ session('success')['messages'] }}</h3>      
     @endif
        
         {!! Form::open(['route' => 'user.store', 'method' => 'post', 'class' => 'form-padrao']) !!}
@@ -27,7 +26,7 @@
 
         {!! Form::close() !!}
 
-        <table class="default-table">
+        <table class="default-table table">
             <thead>
                 <tr>
                     <td>#</td>
@@ -57,7 +56,7 @@
                     <td>
                         {!! Form::open(['route' => ['user.destroy', $user->id], 'method' => 'DELETE']) !!}
 
-                        {!! Form::submit('Remover') !!}
+                        {!! Form::submit('Remover', ['class' => 'btn btn-danger', 'style' => 'border-radius:30px;', 'onclick' => 'return confirm("Deseja realmente excluir esse usuário?")']) !!}
 
                         {!! Form::close() !!}
                         

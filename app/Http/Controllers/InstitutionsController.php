@@ -11,6 +11,7 @@ use App\Http\Requests\InstitutionCreateRequest;
 use App\Http\Requests\InstitutionUpdateRequest;
 use App\Repositories\InstitutionRepository;
 use App\Validators\InstitutionValidator;
+use App\Services\InstitutionService;
 
 /**
  * Class InstitutionsController.
@@ -19,26 +20,17 @@ use App\Validators\InstitutionValidator;
  */
 class InstitutionsController extends Controller
 {
-    /**
-     * @var InstitutionRepository
-     */
+
     protected $repository;
-
-    /**
-     * @var InstitutionValidator
-     */
     protected $validator;
+    protected $service;
 
-    /**
-     * InstitutionsController constructor.
-     *
-     * @param InstitutionRepository $repository
-     * @param InstitutionValidator $validator
-     */
-    public function __construct(InstitutionRepository $repository, InstitutionValidator $validator)
+
+    public function __construct(InstitutionRepository $repository, InstitutionValidator $validator, InstitutionService $service)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
+        $this->service = $service;
     }
 
     /**
@@ -48,57 +40,31 @@ class InstitutionsController extends Controller
      */
     public function index()
     {
-        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
         $institutions = $this->repository->all();
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $institutions,
-            ]);
-        }
-
-        return view('institutions.index', compact('institutions'));
+        
+        return view('institutions.index', [
+            'institutions'=> $institutions,
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  InstitutionCreateRequest $request
-     *
-     * @return \Illuminate\Http\Response
-     *
-     * @throws \Prettus\Validator\Exceptions\ValidatorException
-     */
+    
     public function store(InstitutionCreateRequest $request)
     {
-        try {
+        
+        //criar uma nova instituição atráves do Service
+        $request = $this->service->store($request->all());
+        //Verificar se houve sucesso ou falha
+        $institution = $request['success'] ? $request['data'] : null;
 
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
+        //Passar mensagens para view
+        session()->flash('success', [
+            'success'  => $request['success'],
+            'messages' => $request['messages']
+        ]);
 
-            $institution = $this->repository->create($request->all());
+        //transferir o resultado para view
+        return redirect()->route('institution.index');
 
-            $response = [
-                'message' => 'Institution created.',
-                'data'    => $institution->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-            if ($request->wantsJson()) {
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
     }
 
     /**
