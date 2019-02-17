@@ -23,4 +23,4 @@ Route::get('/user', ['as' => 'user.index', 'uses' => 'UsersController@index']);
 
 Route::resource('user', 'UsersController');
 
-
+Route::resource('institution', 'InstitutionsController');

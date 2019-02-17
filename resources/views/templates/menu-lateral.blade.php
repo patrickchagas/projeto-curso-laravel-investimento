@@ -8,14 +8,14 @@
         </li>
 
         <li>
-            <a href="{{ route('user.index')}}">
+            <a href="{{ route('user.index') }}">
                 <i class="fas fa-user"></i>
                 <h3>Usuários</h3>
             </a>    
         </li>
         
         <li>
-            <a href="">
+            <a href="{{ route('institution.index') }}">
                 <i class="fas fa-building"></i>
                 <h3>Instituições</h3>
             </a>    
