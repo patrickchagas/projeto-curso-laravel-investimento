@@ -8,13 +8,18 @@ use App\Repositories\UserRepository;
 use App\Entities\User;
 use App\Validators\UserValidator;
 
-/**
- * Class UserRepositoryEloquent.
- *
- * @package namespace App\Repositories;
- */
+
 class UserRepositoryEloquent extends BaseRepository implements UserRepository
 {
+
+    public function selectBoxList(string $descricao = 'name', string $chave = 'id')
+    {
+
+        return $this->model->pluck($descricao, $chave)->all();    
+
+    }
+
+
     /**
      * Specify Model class name
      *

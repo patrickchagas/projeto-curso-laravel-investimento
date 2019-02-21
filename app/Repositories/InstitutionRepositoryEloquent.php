@@ -8,13 +8,18 @@ use App\Repositories\InstitutionRepository;
 use App\Entities\Institution;
 use App\Validators\InstitutionValidator;
 
-/**
- * Class InstitutionRepositoryEloquent.
- *
- * @package namespace App\Repositories;
- */
+
 class InstitutionRepositoryEloquent extends BaseRepository implements InstitutionRepository
-{
+{   
+
+    //Listar instituições por SELECT
+    public function selectBoxList(string $descricao = 'name', string $chave = 'id')
+    {
+
+        return $this->model->pluck($descricao, $chave)->all();
+
+    }    
+
     /**
      * Specify Model class name
      *
