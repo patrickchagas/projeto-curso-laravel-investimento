@@ -13,11 +13,6 @@ use App\Repositories\UserRepository;
 use App\Validators\UserValidator;
 use App\Services\UserService;
 
-/**
- * Class UsersController.
- *
- * @package namespace App\Http\Controllers;
- */
 class UsersController extends Controller
 {   
     protected $service;
@@ -54,9 +49,7 @@ class UsersController extends Controller
         ]);
 
         //transferir o resultado para view
-        return view('user.index', [
-            'usuario' => $usuario,
-        ]);
+        return redirect()->route('user.index');
     }
 
     /**

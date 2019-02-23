@@ -24,14 +24,14 @@ class User extends Authenticatable
     }
     
     //Setar formatação do cpf
-    public function getCpfAttribute()
+    public function getFormattedCpfAttribute()
     {   
         $cpf = $this->attributes['cpf'];    
         
         return substr($cpf, 0, 3) . '.' .substr($cpf, 3, 3) . '.' . substr($cpf, 7, 3) . '-' . substr($cpf, -2) ;
     }
 
-    public function getPhoneAttribute()
+    public function getFormattedPhoneAttribute()
     {
 
         $phone = $this->attributes['phone'];    
@@ -40,7 +40,7 @@ class User extends Authenticatable
 
     }
 
-    public function getBirthAttribute()
+    public function getFormattedBirthAttribute()
     {
 
         $birth = explode('-', $this->attributes['birth']);

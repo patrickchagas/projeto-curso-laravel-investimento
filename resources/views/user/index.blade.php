@@ -46,10 +46,10 @@
                     
                 <tr>
                     <td>{{ $user->id }}</td>
-                    <td>{{ $user->cpf }}</td>
+                    <td>{{ $user->Formattedcpf }}</td>
                     <td>{{ $user->name }}</td>
-                    <td>{{ $user->phone }}</td>
-                    <td>{{ $user->birth }}</td>
+                    <td>{{ $user->Formattedphone }}</td>
+                    <td>{{ $user->Formattedbirth }}</td>
                     <td>{{ $user->email }}</td>      
                     <td>{{ $user->status }}</td>
                     <td>{{ $user->permission }}</td>
