@@ -23,5 +23,12 @@ class Institution extends Model implements Transformable
     protected $fillable = ['name'];
     public $timestamps = true;
 
+    public function groups()
+    {
+
+        return $this->hasMany(Group::class);
+
+    }
+
 
 }

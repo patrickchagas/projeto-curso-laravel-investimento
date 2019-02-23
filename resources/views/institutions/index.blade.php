@@ -34,6 +34,8 @@
                             {!! Form::open(['route' => ['institution.destroy', $inst->id], 'method' => 'delete']) !!}
                             {!! Form::submit('Remover', ['class' => 'btn btn-danger', 'style' => 'border-radius:30px;', 'onclick' => 'return confirm("Deseja realmente excluir essa Instituição?")']) !!}
                             {!! Form::close() !!}
+                            <br>
+                        <a href="{{ route('institution.show', $inst->id) }}">Detalhes</a>
                         </td>
                     </tr>
                  @endforeach
