@@ -16,14 +16,14 @@ class Group extends Model implements Transformable
     public function owner()
     {
 
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
 
     }    
 
     public function institution()
     {
 
-        return $this->belongsTo(Institution::class);
+        return $this->belongsTo(Institution::class, 'institution_id');
 
     }
 
