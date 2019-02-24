@@ -1,0 +1,6 @@
+@include('templates.formulario.input', ['label'=> 'CPF', 'input' => 'cpf', 'attributes' => ['placeholder' => 'Digite o CPF']])
+@include('templates.formulario.input', ['label' => 'Nome','input' => 'name', 'attributes' => ['placeholder' => 'Digite o nome']])
+@include('templates.formulario.input', ['label' => 'Data de Nascimento','input' => 'birth', 'attributes' => ['placeholder' => 'Data de Nascimento']])
+@include('templates.formulario.input', ['label' => 'Telefone ou Celular', 'input' => 'phone', 'attributes' => ['placeholder' => 'Digite o telefone']])
+@include('templates.formulario.input', ['label' => 'E-mail','input' => 'email', 'attributes' => ['placeholder' => 'Digite o e-mail']])
+@include('templates.formulario.password', ['label' => 'Senha','input' => 'password', 'attributes' => ['placeholder' => 'Digite a senha']])

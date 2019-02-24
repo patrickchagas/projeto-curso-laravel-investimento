@@ -31,6 +31,7 @@
                 {!! Form::submit('Remover', ['class' => 'btn btn-danger', 'style' => 'border-radius:30px;', 'onclick' => 'return confirm("Deseja realmente excluir esse usuário?")']) !!}
 
                 {!! Form::close() !!}
+            <a href="{{ route('user.edit', $user->id)}}">Editar</a>
                 
             </td>
         </tr>
