@@ -69,10 +69,36 @@ class GroupsController extends Controller
 
     }
 
+    public function userStore(Request $request, $group_id)
+    {
+
+        //criar uma novo grupo atráves do Service
+        $request = $this->service->userStore($group_id, $request->all());
+
+        //Passar mensagens para view
+        session()->flash('success', [
+            'success'  => $request['success'],
+            'messages' => $request['messages']
+        ]);
+
+        //transferir o resultado para view
+        return redirect()->route('group.show', [$group_id]);
+
+
+    }
+
    
     public function show($id)
     {
         
+        $group = $this->repository->find($id);
+        $user_list = $this->userRepository->selectBoxList();
+
+        return view('groups.show', [
+            'group'=> $group,
+            "user_list" => $user_list
+        ]);                
+
     }
 
     public function update(GroupUpdateRequest $request, $id)

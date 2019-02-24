@@ -1,3 +1,9 @@
+<style>
+    .btn{
+        border-radius:30px;
+    }
+</style>
+
 <table class="default-table table">
     <thead>
             <tr>
@@ -19,8 +25,9 @@
                     <td>{{ $group->owner->name }}</td>                            
                     <td>
                         {!! Form::open(['route' => ['group.destroy', $group->id], 'method' => 'delete']) !!}
-                        {!! Form::submit('Remover', ['class' => 'btn btn-danger', 'style' => 'border-radius:30px;', 'onclick' => 'return confirm("Deseja realmente excluir essa Instituição?")']) !!}
+                        {!! Form::submit('Remover', ['class' => 'btn btn-danger', 'onclick' => 'return confirm("Deseja realmente excluir essa Instituição?")']) !!}
                         {!! Form::close() !!}
+                        <a href="{{ route('group.show', $group->id) }}" class="btn btn-dark" style="margin-top: 10px;">Detalhes</a>
                     </td>
                 </tr>
              @endforeach
