@@ -84,61 +84,33 @@ class InstitutionsController extends Controller
        
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $institution = $this->repository->find($id);
 
-        return view('institutions.edit', compact('institution'));
+        return view('institutions.edit', [
+            'institution' => $institution
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  InstitutionUpdateRequest $request
-     * @param  string            $id
-     *
-     * @return Response
-     *
-     * @throws \Prettus\Validator\Exceptions\ValidatorException
-     */
-    public function update(InstitutionUpdateRequest $request, $id)
+   
+    public function update(Request $request, $id)
     {
-        try {
+        
+        //criar uma nova instituição atráves do Service
+        $request = $this->service->update($request->all(), $id);
+        //Verificar se houve sucesso ou falha
+        $institution = $request['success'] ? $request['data'] : null;
 
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
+        //Passar mensagens para view
+        session()->flash('success', [
+            'success'  => $request['success'],
+            'messages' => $request['messages']
+        ]);
 
-            $institution = $this->repository->update($request->all(), $id);
+        //transferir o resultado para view
+        return redirect()->route('institution.index');
 
-            $response = [
-                'message' => 'Institution updated.',
-                'data'    => $institution->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-
-            if ($request->wantsJson()) {
-
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
     }
 
 
