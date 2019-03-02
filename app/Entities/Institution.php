@@ -30,5 +30,12 @@ class Institution extends Model implements Transformable
 
     }
 
+    public function products()
+    {   
+        //Isso significa que uma instituição vão ter vários produtos
+        return $this->hasMany(Product::class);
+
+    }
+
 
 }
