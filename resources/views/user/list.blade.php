@@ -1,3 +1,14 @@
+<style>
+.btn{
+    display: inline-block;
+    border-radius:30px;
+}
+
+div {
+    display: inline-block;
+}
+</style>
+
 <table class="default-table table">
     <thead>
         <tr>
@@ -26,13 +37,13 @@
             <td>{{ $user->status }}</td>
             <td>{{ $user->permission }}</td>
             <td>
-                {!! Form::open(['route' => ['user.destroy', $user->id], 'method' => 'DELETE']) !!}
+                    {!! Form::open(['route' => ['user.destroy', $user->id], 'method' => 'DELETE']) !!}
+                <div>
+                    {!! Form::submit('Remover', ['class' => 'btn btn-danger', 'style' => 'border-radius:30px;', 'onclick' => 'return confirm("Deseja realmente excluir esse usuário?")']) !!}
 
-                {!! Form::submit('Remover', ['class' => 'btn btn-danger', 'style' => 'border-radius:30px;', 'onclick' => 'return confirm("Deseja realmente excluir esse usuário?")']) !!}
-
-                {!! Form::close() !!}
-            <a href="{{ route('user.edit', $user->id)}}">Editar</a>
-                
+                    {!! Form::close() !!}
+                    <a href="{{ route('user.edit', $user->id)}}" class="btn btn-primary">Editar</a>
+                </div>    
             </td>
         </tr>
         @endforeach

@@ -2,6 +2,9 @@
     .btn{
         border-radius:30px;
     }
+    div {
+        display: inline-block;
+    }
 </style>
 
 <table class="default-table table">
@@ -24,10 +27,16 @@
                     <td>{{ $group->institution->name }}</td>
                     <td>{{ $group->owner->name }}</td>                            
                     <td>
-                        {!! Form::open(['route' => ['group.destroy', $group->id], 'method' => 'delete']) !!}
-                        {!! Form::submit('Remover', ['class' => 'btn btn-danger', 'onclick' => 'return confirm("Deseja realmente excluir essa Instituição?")']) !!}
-                        {!! Form::close() !!}
-                        <a href="{{ route('group.show', $group->id) }}" class="btn btn-dark" style="margin-top: 10px;">Detalhes</a>
+                            {!! Form::open(['route' => ['group.destroy', $group->id], 'method' => 'delete']) !!}
+                        <div>
+                            {!! Form::submit('Remover', ['class' => 'btn btn-danger', 'onclick' => 'return confirm("Deseja realmente excluir essa Instituição?")']) !!}
+                            
+                             {!! Form::close() !!}
+
+                            <a href="{{ route('group.show', $group->id) }}" class="btn btn-dark" >Detalhes</a>
+                            <a href="{{ route('group.edit', $group->id) }}" class="btn btn-primary" >Editar</a>
+                        </div>   
+                         
                     </td>
                 </tr>
              @endforeach

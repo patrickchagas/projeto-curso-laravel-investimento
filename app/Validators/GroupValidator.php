@@ -16,6 +16,9 @@ class GroupValidator extends LaravelValidator
             'user_id' => 'required|exists:users,id',
             'institution_id' => 'required|exists:institutions,id',
          ],
-        ValidatorInterface::RULE_UPDATE => [],
+        ValidatorInterface::RULE_UPDATE => [
+            'name' =>   'required',
+            
+        ],
     ];
 }

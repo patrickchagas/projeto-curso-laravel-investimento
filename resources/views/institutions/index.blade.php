@@ -2,6 +2,17 @@
 
 @section('conteudo-view')
 
+<style>
+    .btn{
+        display: inline-block;
+        border-radius:30px;
+    }
+    div {
+        display: inline-block;
+    }
+</style>
+
+
 @if(session('success'))
     <h3>{{ session('success')['messages'] }}</h3>      
 @endif
@@ -31,12 +42,16 @@
                         <td>{{ $inst->id }}</td>
                         <td>{{ $inst->name }}</td>
                         <td>
-                            {!! Form::open(['route' => ['institution.destroy', $inst->id], 'method' => 'delete']) !!}
-                            {!! Form::submit('Remover', ['class' => 'btn btn-danger', 'style' => 'border-radius:30px;', 'onclick' => 'return confirm("Deseja realmente excluir essa Instituição?")']) !!}
-                            {!! Form::close() !!}
-                            <br>
-                        <a href="{{ route('institution.show', $inst->id) }}">Detalhes</a> <br>
-                        <a href="{{ route('institution.edit', $inst->id) }}">Editar</a>
+                                {!! Form::open(['route' => ['institution.destroy', $inst->id], 'method' => 'delete']) !!}
+                            <div>      
+                                {!! Form::submit('Remover', ['class' => 'btn btn-danger', 'style' => 'border-radius:30px;', 'onclick' => 'return confirm("Deseja realmente excluir essa Instituição?")']) !!}
+                                {!! Form::close() !!}
+    
+                                <a href="{{ route('institution.show', $inst->id) }}" class="btn btn-dark">Detalhes</a> 
+        
+                                <a href="{{ route('institution.edit', $inst->id) }}" class="btn btn-dark">Editar</a>
+                            </div> 
+
                         </td>
                     </tr>
                  @endforeach
