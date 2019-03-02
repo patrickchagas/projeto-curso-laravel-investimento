@@ -28,6 +28,13 @@
             </a>    
         </li> 
 
+        <li>
+            <a href="{{ route('moviment.application') }}">
+                <i class="fa fa-money" aria-hidden="true"></i>
+                <h3>Investir</h3>
+            </a>    
+        </li> 
+
     </ul>   
 
 </nav>
