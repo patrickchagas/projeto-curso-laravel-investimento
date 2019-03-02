@@ -50,6 +50,8 @@
                                 <a href="{{ route('institution.show', $inst->id) }}" class="btn btn-dark">Detalhes</a> 
         
                                 <a href="{{ route('institution.edit', $inst->id) }}" class="btn btn-dark">Editar</a>
+
+                                <a href="{{ route('institution.product.index', $inst->id) }}" class="btn btn-dark">Produtos</a>
                             </div> 
 
                         </td>
