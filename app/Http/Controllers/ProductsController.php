@@ -140,7 +140,7 @@ class ProductsController extends Controller
     {
         $deleted = $this->repository->delete($product_id);
 
-         //Passar mensagens para view
+        //Passar mensagens para view
         session()->flash('success', [
             'success'  => true,
             'messages' => 'Produto removido'
