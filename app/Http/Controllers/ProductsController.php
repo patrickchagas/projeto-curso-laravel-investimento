@@ -45,10 +45,9 @@ class ProductsController extends Controller
 
     public function index($institution_id)
     {
-        $products = $this->repository->all();
+
         $institution = Institution::find($institution_id);
-
-
+        
         return view('institutions.product.index', [
             'institution'=> $institution
         ]);
@@ -80,13 +79,6 @@ class ProductsController extends Controller
             }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $product = $this->repository->find($id);
@@ -101,13 +93,7 @@ class ProductsController extends Controller
         return view('products.show', compact('product'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function edit($id)
     {
         $product = $this->repository->find($id);
@@ -115,16 +101,7 @@ class ProductsController extends Controller
         return view('products.edit', compact('product'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  ProductUpdateRequest $request
-     * @param  string            $id
-     *
-     * @return Response
-     *
-     * @throws \Prettus\Validator\Exceptions\ValidatorException
-     */
+  
     public function update(ProductUpdateRequest $request, $id)
     {
         try {
@@ -159,25 +136,16 @@ class ProductsController extends Controller
     }
 
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy($institution_id, $product_id)
     {
-        $deleted = $this->repository->delete($id);
+        $deleted = $this->repository->delete($product_id);
 
-        if (request()->wantsJson()) {
+         //Passar mensagens para view
+        session()->flash('success', [
+            'success'  => true,
+            'messages' => 'Produto removido'
+        ]);
 
-            return response()->json([
-                'message' => 'Product deleted.',
-                'deleted' => $deleted,
-            ]);
-        }
-
-        return redirect()->back()->with('message', 'Product deleted.');
+        return redirect()->back();
     }
 }

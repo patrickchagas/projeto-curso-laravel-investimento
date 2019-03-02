@@ -17,5 +17,62 @@
 
     {!! Form::close() !!}
 
+    <style>
+        .btn{
+            border-radius:30px;
+        }
+        div {
+            display: inline-block;
+        }
+    </style>
+        
+
+    <table class="default-table table">
+
+        <thead>
+            <tr>    
+                <th>#</th>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Indexador</th>
+                <th>Taxa de Juros</th>
+                <th>Opções</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @forelse($institution->products as $product)
+                
+            <tr>
+                <td> {{ $product->id  }}</td>
+                <td> {{ $product->name }} </td>
+                <td> {{ $product->description }} </td>
+                <td> {{ $product->index }} </td>
+                <td> {{ $product->interest_rate}} </td>
+
+                <td>
+                   
+                        {!! Form::open(['route' => ['institution.product.destroy', $institution->id, $product->id], 'method' => 'delete']) !!}
+                    <div>
+                        {!! Form::submit('Remover', ['class' => 'btn btn-danger', 'onclick' => 'return confirm("Deseja realmente excluir essa Instituição?")']) !!}
+
+                        {!! Form::close() !!}
+
+                        <a href="" class="btn btn-primary" >Editar</a>
+                    </div>
+                </td>
+            <tr>    
+
+            @empty
+                <tr>
+                    <th>Nada Cadastrado</th>
+                    
+                </tr>
+
+            @endforelse
+        </tbody>
+
+    </table>   
+
 
 @endsection
