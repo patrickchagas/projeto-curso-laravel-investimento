@@ -23,6 +23,10 @@ Route::get('/user', ['as' => 'user.index', 'uses' => 'UsersController@index']);
 
 
 Route::get('user/moviment', ['as' => 'moviment.index', 'uses' => 'MovimentsController@index']);
+
+Route::get('getback', ['as' => 'moviment.getback', 'uses' => 'MovimentsController@getback']);
+Route::post('getback', ['as' => 'moviment.getback.store', 'uses' => 'MovimentsController@storeGetback']);
+
 Route::get('moviment', ['as' => 'moviment.application', 'uses' => 'MovimentsController@application']);
 Route::post('moviment', ['as' => 'moviment.application.store', 'uses' => 'MovimentsController@storeApplication']);
 Route::get('moviment/all', ['as' => 'moviment.all', 'uses' => 'MovimentsController@all']);

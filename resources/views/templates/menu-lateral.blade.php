@@ -33,6 +33,13 @@
                 <i class="fa fa-money" aria-hidden="true"></i>
                 <h3>Investir</h3>
             </a>    
+        </li>
+        
+        <li>
+            <a href="{{ route('moviment.getback') }}">
+                <i class="fa fa-money" aria-hidden="true"></i>
+                <h3>Resgatar</h3>
+            </a>    
         </li> 
 
         <li>
