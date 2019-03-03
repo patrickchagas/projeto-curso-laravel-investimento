@@ -22,7 +22,12 @@ class User extends Authenticatable
         //RELACIONAMENTO N:N
         return $this->belongsToMany(Group::class, 'user_groups');
 
-    }        
+    } 
+    
+    public function moviments()
+    {
+        return $this->hasMany(Moviment::class);
+    }
 
     //Criptografar a senha do usuário
     public function setPasswordAttribute($value)

@@ -42,6 +42,13 @@
             </a>    
         </li> 
 
+        <li>
+            <a href="{{ route('moviment.all') }}">
+                <i class="fa fa-dollar" aria-hidden="true"></i>
+                <h3>Extrato</h3>
+            </a>    
+        </li> 
+
     </ul>   
 
 </nav>
