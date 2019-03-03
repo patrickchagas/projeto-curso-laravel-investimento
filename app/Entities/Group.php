@@ -12,6 +12,17 @@ class Group extends Model implements Transformable
 
     protected $fillable = [
         'name', 'user_id', 'institution_id'];
+
+    public function getTotalValueAttribute()
+    {   
+        
+        $total = 0;
+        foreach ($this->moviments as $moviment) {
+            $total += $moviment->value;
+        }
+        
+        return $total;
+    }    
     
     public function owner()
     {
@@ -31,6 +42,13 @@ class Group extends Model implements Transformable
     {
 
         return $this->belongsTo(Institution::class, 'institution_id');
+
+    }
+
+    public function moviments()
+    {
+        
+        return $this->hasMany(Moviment::class);
 
     }
 

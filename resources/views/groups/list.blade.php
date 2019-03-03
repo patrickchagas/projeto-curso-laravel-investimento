@@ -12,7 +12,8 @@
             <tr>
                 <th>#</th>
                 <th>Nome do Grupo</th>
-                <th>Instituição</th>
+                <th>Patrimônio</th>
+                <th>Instituição</th>               
                 <th>Nome do Responsável</th>
                 <th>Opções</th>
             </tr>
@@ -24,6 +25,7 @@
                 <tr>
                     <td>{{ $group->id }}</td>
                     <td>{{ $group->name }}</td>
+                    <td>R$ {{ number_format($group->total_value, 2, ',', '.') }}</td>
                     <td>{{ $group->institution->name }}</td>
                     <td>{{ $group->owner->name }}</td>                            
                     <td>
