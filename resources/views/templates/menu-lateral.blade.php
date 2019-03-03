@@ -35,6 +35,13 @@
             </a>    
         </li> 
 
+        <li>
+            <a href="{{ route('moviment.index') }}">
+                <i class="fa fa-dollar" aria-hidden="true"></i>
+                <h3>Aplicações</h3>
+            </a>    
+        </li> 
+
     </ul>   
 
 </nav>

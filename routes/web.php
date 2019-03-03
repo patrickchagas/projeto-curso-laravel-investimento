@@ -21,13 +21,17 @@ Route::get('/dashboard', ['as' => 'user.dashboard', 'uses' => 'DashboardControll
 
 Route::get('/user', ['as' => 'user.index', 'uses' => 'UsersController@index']);
 
+
+Route::get('user/moviment', ['as' => 'moviment.index', 'uses' => 'MovimentsController@index']);
+Route::get('moviment', ['as' => 'moviment.application', 'uses' => 'MovimentsController@application']);
+Route::post('moviment', ['as' => 'moviment.application.store', 'uses' => 'MovimentsController@storeApplication']);
+
+
 Route::resource('user', 'UsersController');
 Route::resource('institution', 'InstitutionsController');
 Route::resource('group', 'GroupsController');
 Route::resource('institution.product', 'ProductsController');
 
-Route::get('moviment', ['as' => 'moviment.application', 'uses' => 'MovimentsController@application']);
-Route::post('moviment', ['as' => 'moviment.application.store', 'uses' => 'MovimentsController@storeApplication']);
 
 Route::post('group/{group_id}/user', ['as' => 'group.user.store', 'uses' => 'GroupsController@userStore' ]);
 

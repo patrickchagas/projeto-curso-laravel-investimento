@@ -19,6 +19,30 @@ class Moviment extends Model implements Transformable
         'type',
     ];
 
+    //Só vai trazer os produtos
+    public function scopeProducts($query, $product)
+    {
+
+        return $query->where('product_id', $product->id); 
+
+    }
+
+    //Só vai trazer aplicações financeiras
+    public function scopeApplications($query)
+    {
+
+        return $query->where('type', 1); 
+
+    }
+
+    //Só vai trazer resgastes financeiros
+    public function scopeOutFlows($query)
+    {
+
+        return $query->where('type', 2);
+
+    }
+
     //Descobrir quem é o usuário 
     public function user()
     {

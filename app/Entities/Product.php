@@ -28,4 +28,21 @@ class Product extends Model implements Transformable
 
     }
 
+    public function valuefromUser(User $user)
+    {
+
+        $inflows = $this->moviments()->products($this)->applications()->sum('value');
+        $outflows = $this->moviments()->products($this)->outflows()->sum('value');
+
+        return $inflows - $outflows;
+        
+    }
+
+    public function moviments()
+    {
+
+        return $this->hasMany(Moviment::class);
+
+    }
+
 }
